@@ -52,3 +52,5 @@ const start = async () => {
 };
 
 start();
+
+// MONGO_URI=mongodb+srv://ozumahe:SagDFXbzyk7EzUvI@nodeexpressprojects.xrppt.mongodb.net/MERN-PROJECT-API?retryWrites=true&w=majority
