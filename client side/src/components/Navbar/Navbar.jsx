@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setDialog } from "../../actions";
 
 import { Flex, Text, Button } from "@chakra-ui/react";
@@ -7,6 +7,7 @@ import { FaPlusSquare } from "react-icons/fa";
 
 const Navbar = () => {
   const dispatch = useDispatch();
+  const diolog = useSelector((store) => store.setDialog);
   return (
     <Flex
       width={"100%"}
@@ -19,9 +20,11 @@ const Navbar = () => {
       <Text fontSize={"2xl"} fontWeight={"bold"}>
         MERN_STACK
       </Text>
-      <Button onClick={() => dispatch(setDialog())}>
-        <FaPlusSquare /> Post
-      </Button>
+      {!diolog && (
+        <Button onClick={() => dispatch(setDialog())}>
+          <FaPlusSquare /> Post
+        </Button>
+      )}
     </Flex>
   );
 };

@@ -14,10 +14,10 @@ const postsRouter = require("./routes/posts");
 const notFoundMiddleware = require("./middleware/notFoundMiddleware");
 const errorHandlerMiddleware = require("./middleware/errorHandlerMiddleware");
 
-app.use(express.json());
+app.use(cors());
+// app.use(express.json());
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
-app.use(cors());
 
 app.use("/api/v1/posts", postsRouter);
 
