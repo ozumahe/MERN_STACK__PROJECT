@@ -19,6 +19,10 @@ app.use(cors());
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 
+app.get("/", (req, res) => {
+  res.send("Hello World");
+});
+
 app.use("/api/v1/posts", postsRouter);
 
 app.use(notFoundMiddleware);
@@ -52,5 +56,3 @@ const start = async () => {
 };
 
 start();
-
-// MONGO_URI=mongodb+srv://ozumahe:SagDFXbzyk7EzUvI@nodeexpressprojects.xrppt.mongodb.net/MERN-PROJECT-API?retryWrites=true&w=majority

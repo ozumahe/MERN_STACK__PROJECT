@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setDialog } from "../../../actions";
+import { setDialog, likePost, deletePost } from "../../../actions";
 import { Box, Image, Flex, Text, Button } from "@chakra-ui/react";
 import { FaEllipsisH, FaThumbsUp, FaTrash } from "react-icons/fa";
 // import { chakra } from "@chakra-ui/react";
@@ -63,13 +63,25 @@ const Post = ({
       </Box>
       <Flex padding="10px" justifyContent="space-between">
         <Box>
-          <Button padding="0" bg="none" color="blue">
+          <Button
+            onClick={() => {
+              dispatch(likePost(_id));
+            }}
+            padding="0"
+            bg="none"
+            color="blue"
+          >
             <FaThumbsUp />
           </Button>
           {likeCount}
         </Box>
         <Box>
-          <Button padding="0" bg="none" color="red">
+          <Button
+            padding="0"
+            bg="none"
+            color="red"
+            onClick={() => dispatch(deletePost(_id))}
+          >
             <FaTrash />
           </Button>
         </Box>

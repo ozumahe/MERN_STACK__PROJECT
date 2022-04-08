@@ -1,14 +1,20 @@
+import * as actionTypes from "../constants/actionTypes";
+
 const post = (post = [], action) => {
   switch (action.type) {
-    case "DELETE":
+    case actionTypes.LIKE_POST:
+      return post.map((postData) =>
+        postData._id === action.payload._id ? action.payload : postData
+      );
+    case actionTypes.DELETE:
       return post.filter((pos) => pos._id !== action.payload);
-    case "UPDATE":
+    case actionTypes.UPDATE:
       return post.map((postdata) =>
         postdata._id === action.payload._id ? action.payload : postdata
       );
-    case "FETCH_ALL":
+    case actionTypes.FETCH_ALL:
       return action.payload;
-    case "CREATE":
+    case actionTypes.CREATE:
       return [...post, action.payload];
     default:
       return post;

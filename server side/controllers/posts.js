@@ -13,7 +13,7 @@ const createPost = async (req, res) => {
   res.status(StatusCodes.CREATED).json(post);
 };
 
-const updatePost = async () => {
+const updatePost = async (req, res) => {
   const { id: postId } = req.params;
 
   if (!mongoose.Types.ObjectId.isValid(postId)) {
@@ -48,4 +48,26 @@ const deletePost = async (req, res) => {
   res.status(StatusCodes.OK).json({ msg: "Post deleted Successfully" });
 };
 
-module.exports = { getAllPost, createPost, updatePost, deletePost };
+const likePost = async (req, res) => {
+  const { id: postId } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(postId)) {
+    throw new NotFoundError(`no post found with id ${postId}`);
+  }
+
+  const post = await Posts.findById(postId);
+
+  if (!post) {
+    throw new NotFoundError(`No post Found With id ${id}`);
+  }
+
+  const likedPost = await Posts.findByIdAndUpdate(
+    { _id: postId },
+    { likeCount: post.likeCount + 1 },
+    { new: true, runValidators: true }
+  );
+
+  res.status(StatusCodes.OK).json(likedPost);
+};
+
+module.exports = { getAllPost, createPost, updatePost, deletePost, likePost };
